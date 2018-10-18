@@ -5,7 +5,7 @@
 # Popis:
 ############################################################################
 from random import randint
-from pylab import show, draw, imshow, figure
+from pylab import show, imshow, figure
 from matplotlib import animation
 
 HEIGHT = 32
@@ -25,8 +25,7 @@ data = [[randint(0, 1) for i in range(WIDTH)] for j in range(HEIGHT)]
 def krok(count):
     # vytvořím nová náhodná data
     data = [[randint(0, 1) for i in range(WIDTH)] for j in range(HEIGHT)]
-    graf.set_array(data)  # provedu update dat v grafu
-    draw()  # překreslím graf
+    graf.set_data(data)  # provedu update dat v grafu
 
 
 fig = figure()  # odkaz na obrázek do proměnné fig

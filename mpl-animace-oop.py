@@ -5,12 +5,12 @@
 # Popis:
 ############################################################################
 from random import randint
-from pylab import show, imshow, figure
+from matplotlib import pyplot as plt
 from matplotlib import animation
 
 
 class Planet:
-    def __init__(self, width=64, height=64):
+    def __init__(self, title, width=64, height=64):
         self.width = width
         self.height = height
         self.data = []
@@ -20,11 +20,13 @@ class Planet:
                 radek.append(randint(0, 1))
             self.data.append(radek)
         # fig = figure()  # odkaz na obrázek do proměnné fig
-        self.fig = figure()
+        self.fig = plt.figure()
+        self.title = plt.title(title)
         # graf = imshow(data)  # a odkaz na graf do proměnné graf
-        self.graf = imshow(self.data)
+        self.graf = plt.imshow(self.data)
         # animace se provede v obrázku fig a co 500ms se spustí metoda step
-        self.anim = animation.FuncAnimation(self.fig, self.step, interval=500)
+        self.anim = animation.FuncAnimation(self.fig, self.step,
+                                            frames=10, interval=500)
 
     def getdata(self):
         return self.data
@@ -36,12 +38,14 @@ class Planet:
         # vytvořím nová náhodná data
         data = [[randint(0, 1) for i in range(self.width)]
                 for j in range(self.height)]
-        self.graf.set_array(data)  # provedu update dat v grafu
+        self.graf.set_data(data)  # provedu update dat v grafu
 
 
 # nadefinoval jsem jak vypadá planeta, tak si tři různé planetky udělám
-earth = Planet()
-mars = Planet(32, 32)
-venus = Planet(64, 32)
+earth = Planet('Země')
+mars = Planet('Marz', 32, 32)
+venus = Planet('Venuše', 64, 32)
 
-show()
+venus.anim.save('zivot.mp4', fps=2)
+
+plt.show()
