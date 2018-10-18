@@ -42,6 +42,7 @@ objektově orientované programování.
 
 
 ![Hra života](zivot.gif)
+https://youtu.be/FRJwl1UtMrM
 
 ------------------------------------------------------------------------------
 
